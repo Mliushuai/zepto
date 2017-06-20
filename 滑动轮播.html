@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>滑动轮播</title>
+	<link href="touch.css" type="text/css" rel="stylesheet"/>
+	<script src="zepto-1.1.6.js"></script>
+	<script src="zepto.js"></script>
+</head>
+<body>
+<div id="show">
+	<div id="contains"><img src="img/1.jpg"><img src="img/timg (1).jpg"><img src="img/timg (2).jpg"><img src="img/timg.jpg"></div>
+</div>
+<script type="text/javascript">
+	Zepto(function($){
+		var sta="";//存储手指的X坐标
+		var mov="";//储存滑动计算后数值用于判断
+		//左缓动
+		function scl(){
+		$("#contains").animate({"left":"-1000px"}, 800,function(){
+			$("#contains").children('img').first("img").appendTo($("#contains"));
+			$("#contains").css("left","-500px");
+		})
+	}
+	//右缓动
+		function sclr(){
+		$("#contains").animate({"left":"0px"}, 800,function(){
+			$("#contains").children('img').last("img").prependTo($("#contains"));
+			$("#contains").css("left","-500px");
+		})
+	}
+	i=setInterval(scl,3000);
+	//按住停止轮播获取手指的X坐标
+	$('#show').on("touchstart",function(event){
+    var touchpros =event.touches[0];//获取滑动事件
+    clearInterval(i);
+    sta=touchpros.screenX;
+  });
+	//开始移动手指触发事件
+  $('#show').on("touchmove",function(){
+  	var touchpros =event.touches[0];
+  	mov=touchpros.screenX-sta;
+  });
+  //手指拿起触发事件
+  $('#show').on("touchend",function(){
+  	if(mov>0){
+  		sclr();
+  	}else{
+  		scl();
+  	}
+  	i=setInterval(scl,3000);
+   
+  });
+  // $('#show').on("touchcancel",function(){
+    
+  // });
+	})
+</script>
+</body>
+</html>
