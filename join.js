@@ -1,4 +1,4 @@
-//http://shzhou.weijikong.com/goods/info/index.html?goodsInfoId=xxx&account=xxx
+//http://shzhou.weijikong.com/goods/info/index.html?goodsInfoId=xxx&account=xxx66
 $(document).ready(function() {
 	var agoodsInfo = {};//商品
     // 截取url
