@@ -77,7 +77,7 @@ $(document).ready(function() {
     			  })        
          		})
     		}else{
-    			alert("获取数据失败！");
+    			alert("获取数据失败！！");
     			return;
     		}
     		
